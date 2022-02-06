@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Fake news Classification</title>
+      <link  rel="stylesheet" href="{{ url_for('static', filename='css/logo-nav.css') }}">
+      <link  rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+   </head>
+   <body>
+      <h1>Fake News Classification</h1>
+      <table class="table">
+         <thead style="background-color:lightgrey">
+            <tr>
+               <th scope="col"></th>
+               <th scope="col">Accuracy</th>
+               <th scope="col">Data Preprocessing TIme</th>
+               <th scope="col">Time to Train the Model</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th scope="row">Logistic Regression</th>
+               <td>{{data.lr_accuracy}}</td>
+               <td>{{data.time_to_process}}</td>
+               <td>{{data.lr_time_to_train}}</td>
+            </tr>
+            <tr>
+               <th scope="row">Naive Bayes</th>
+               <td>{{data.naive_bayes_accuracy}}</td>
+               <td>{{data.time_to_process}}</td>
+               <td>{{data.naive_bayes_time_to_train}}</td>
+            </tr>
+            <tr>
+               <th scope="row">SVM</th>
+               <td>{{data.svm_accuracy}}</td>
+               <td>{{data.time_to_process}}</td>
+               <td>{{data.svm_time_to_train}}</td>
+            </tr>
+         </tbody>
+      </table>
+   </body>
+</html>

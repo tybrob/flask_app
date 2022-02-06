@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Fake news Classification</title>
+      <link  rel="stylesheet" href="{{ url_for('static', filename='css/logo-nav.css') }}">
+      <link  rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+      <script>
+         function checksBeforeSubmit(){
+
+            text = document.getElementById('news_for_prediction');
+            model1 = document.getElementById('model1');
+            model2 = document.getElementById('model2');
+            model3 = document.getElementById('model3');
+            
+            if (text.value == ''){
+               alert('Text should not be empty')
+               return false;
+            }
+            if (!model1.checked && !model2.checked && !model3.checked){
+               alert('You have to select a model')
+               return false;
+            }
+            return true;
+         }
+      </script> 
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+         <div class="container">
+            <a class="navbar-brand" href="">
+            <img src="{{ url_for('static', filename='resources/fakenews.jpg')   }}" width="200" height="50" alt="">
+            </a>
+         </div>
+      </nav>
+      <div class="container">
+         <h1 class="mt-5">Fake News Classification</h1>
+         <p>Please enter your text and choose which model you want to use for prediction.</p>
+         <div class="row">
+            <div class="col-lg-6">
+               <form action="/test" method="post" id="titanic_predict">
+                  <div>
+                     <textarea id="news_for_prediction" name="news_for_prediction" rows="20" cols="45"></textarea>
+                  </div>
+                  <div>
+                     <br>
+                     <input type="radio" id="model1" name="model" value="lr">
+                     <label for="model1">Logistic Regression</label><br>
+                     <input type="radio" id="model2" name="model" value="nb">
+                     <label for="model2">Naive Bayes</label><br>
+                     <input type="radio" id="model3" name="model" value="svm">
+                     <label for="model3">SVM</label><br><br> 
+                  </div>
+               </form>
+               <button class="btn" type="submit" form="titanic_predict" value="Submit" onclick="return checksBeforeSubmit()">Predict</button>
+            </div>
+            <div class="col-lg-6" >
+               {% if data.prediction%}
+                  {% if data.prediction == 'REAL' %}
+                  <h2 style="color:green">{{data.prediction}}</h2>
+                  {% else %}
+                  <h2 style="color:red">{{data.prediction}}</h2>
+                  {% endif %}
+                <h4>Time to predict: {{data.time_to_predict}}</h2>
+               {% endif %}
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
