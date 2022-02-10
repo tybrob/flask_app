@@ -13,7 +13,7 @@ from sklearn.metrics import accuracy_score
 nltk.download('stopwords')
 vectorizer = TfidfVectorizer()
 model_nb = MultinomialNB(alpha=0.1,fit_prior=True)
-model_svm = SVC()
+model_svm = SVC(C=0.3)
 model_lr = LogisticRegression()
 
 def data_preprocessing():
