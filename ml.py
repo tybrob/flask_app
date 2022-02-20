@@ -14,7 +14,7 @@ nltk.download('stopwords')
 vectorizer = TfidfVectorizer()
 model_nb = MultinomialNB(alpha=0.1,fit_prior=True)
 model_svm = LinearSVC(C=0.3)
-model_lr = LogisticRegression()
+model_lr = LogisticRegression(C=1.0,penalty='l2',solver='liblinear')
 
 def data_preprocessing():
     train = pd.read_csv('data/train.csv')
